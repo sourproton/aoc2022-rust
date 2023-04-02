@@ -13,7 +13,7 @@ pub fn pt1(filename: &str) -> (u32, u32) {
     let answer = read_lines(filename)
         // getting a `RoundMoves` out of each line and calculating its `total_points`
         .map(|line| match line {
-            Ok(line) => round_parse_1(line).total_points(),
+            Ok(line) => RoundMoves::from_line(line).total_points(),
             _ => panic!("unable to read line"),
         })
         // getting the sum of all `total_points`
@@ -22,32 +22,6 @@ pub fn pt1(filename: &str) -> (u32, u32) {
     let time = time.elapsed().unwrap().as_millis() as u32;
 
     (answer, time)
-}
-
-/// according to part 1 instructions, parses a `line` in the file to its equivalent `RoundMoves`
-fn round_parse_1(line: String) -> RoundMoves {
-    // each line should be two letters separated by a space
-    let moves: Vec<&str> = line.split(' ').collect();
-
-    if moves.len() != 2 {
-        panic!("line contains more than one move");
-    }
-
-    let opponent = match moves[0] {
-        "A" => Move::Rock,
-        "B" => Move::Paper,
-        "C" => Move::Scissors,
-        _ => panic!("move {} not allowed", moves[0]),
-    };
-
-    let player = match moves[1] {
-        "X" => Move::Rock,
-        "Y" => Move::Paper,
-        "Z" => Move::Scissors,
-        _ => panic!("move {} not allowed", moves[1]),
-    };
-
-    RoundMoves::new(opponent, player)
 }
 
 pub fn pt2(filename: &str) -> (u32, u32) {
@@ -57,7 +31,7 @@ pub fn pt2(filename: &str) -> (u32, u32) {
     let answer = read_lines(filename)
         // getting a `RoundMoves` out of each line and calculating its `total_points`
         .map(|line| match line {
-            Ok(line) => round_parse_2(line).total_points(),
+            Ok(line) => RoundOutcome::from_line(line).total_points(),
             _ => panic!("unable to read line"),
         })
         // getting the sum of all `total_points`
@@ -66,32 +40,6 @@ pub fn pt2(filename: &str) -> (u32, u32) {
     let time = time.elapsed().unwrap().as_millis() as u32;
 
     (answer, time)
-}
-
-/// according to part 1 instructions, parses a `line` in the file to its equivalent `RoundMoves`
-fn round_parse_2(line: String) -> RoundOutcome {
-    // each line should be two letters separated by a space
-    let moves: Vec<&str> = line.split(' ').collect();
-
-    if moves.len() != 2 {
-        panic!("line contains more than one move");
-    }
-
-    let opponent = match moves[0] {
-        "A" => Move::Rock,
-        "B" => Move::Paper,
-        "C" => Move::Scissors,
-        _ => panic!("move {} not allowed", moves[0]),
-    };
-
-    let outcome = match moves[1] {
-        "X" => Outcome::Lost,
-        "Y" => Outcome::Draw,
-        "Z" => Outcome::Win,
-        _ => panic!("move {} not allowed", moves[1]),
-    };
-
-    RoundOutcome::new(opponent, outcome)
 }
 
 #[derive(Debug)]
@@ -135,6 +83,32 @@ impl RoundMoves {
                 Move::Scissors => 3,
             },
         }
+    }
+
+    /// according to part 1 instructions, parses a `line` in the file to its equivalent `RoundMoves`
+    fn from_line(line: String) -> Self {
+        // each line should be two letters separated by a space
+        let moves: Vec<&str> = line.split(' ').collect();
+
+        if moves.len() != 2 {
+            panic!("line contains more than one move");
+        }
+
+        let opponent = match moves[0] {
+            "A" => Move::Rock,
+            "B" => Move::Paper,
+            "C" => Move::Scissors,
+            _ => panic!("move {} not allowed", moves[0]),
+        };
+
+        let player = match moves[1] {
+            "X" => Move::Rock,
+            "Y" => Move::Paper,
+            "Z" => Move::Scissors,
+            _ => panic!("move {} not allowed", moves[1]),
+        };
+
+        RoundMoves::new(opponent, player)
     }
 
     /// returns a new instance of `RoundMoves`
@@ -186,6 +160,32 @@ impl RoundOutcome {
         }
     }
 
+    /// according to part 1 instructions, parses a `line` in the file to its equivalent `RoundMoves`
+    fn from_line(line: String) -> Self {
+        // each line should be two letters separated by a space
+        let moves: Vec<&str> = line.split(' ').collect();
+
+        if moves.len() != 2 {
+            panic!("line contains more than one move");
+        }
+
+        let opponent = match moves[0] {
+            "A" => Move::Rock,
+            "B" => Move::Paper,
+            "C" => Move::Scissors,
+            _ => panic!("move {} not allowed", moves[0]),
+        };
+
+        let outcome = match moves[1] {
+            "X" => Outcome::Lost,
+            "Y" => Outcome::Draw,
+            "Z" => Outcome::Win,
+            _ => panic!("move {} not allowed", moves[1]),
+        };
+
+        RoundOutcome::new(opponent, outcome)
+    }
+
     /// returns a new instance of `RoundOutcome`
     fn new(opponent: Move, outcome: Outcome) -> Self {
         RoundOutcome { opponent, outcome }
@@ -215,13 +215,13 @@ mod tests {
     const FILENAME: &str = "./data/examples/example02.txt";
 
     #[test]
-    fn test_day02_pt01() {
+    fn pt01() {
         let (answer, _) = pt1(FILENAME);
         assert_eq!(15, answer);
     }
 
     #[test]
-    fn test_day02_pt02() {
+    fn pt02() {
         let (answer, _) = pt2(FILENAME);
         assert_eq!(12, answer);
     }
