@@ -17,7 +17,7 @@ My attempt to solve the [AoC2022](https://adventofcode.com/2022/) with the [Rust
 
 ### Usage
 
-- Download your the inputs for each puzzle and put them into the `data/inputs` folder. Name them `input01.txt`, `input02.txt`, etc
+- Download your inputs for each puzzle and put them into the `data/inputs` folder. Name them `input01.txt`, `input02.txt`, etc
 - To run all solutions, run `cargo run --release`
 - To run the solutions to days `X`, `Y` and `Z`, run `cargo run --release -- X Y Z`
 
@@ -27,7 +27,7 @@ The Advent of Code is a great challenge to learn and apply programming skills. M
 
 Rust is a modern, general-purpose programming language that features *memory safety*. I'm particularly interested in this feature and that's the reason I'm learning to code in Rust.
 
-## Solved days so far:
+## Progress
 
 - [X] 1
 - [X] 2
