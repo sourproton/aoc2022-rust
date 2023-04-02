@@ -88,9 +88,9 @@ pub fn pt2(filename: &str) -> (u32, u32) {
 
 #[cfg(test)]
 mod tests {
-    use crate::day01::{pt1, pt2};
+    use crate::solutions::day01::{pt1, pt2};
 
-    const FILENAME: &str = "./data/example01.txt";
+    const FILENAME: &str = "./data/examples/example01.txt";
 
     #[test]
     fn test_day01_pt01() {

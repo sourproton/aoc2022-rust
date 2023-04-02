@@ -12,11 +12,14 @@ My attempt to solve the [AoC2022](https://adventofcode.com/2022/) with the [Rust
 
 - clone this repository
 - `cd` to it
+- test it with `cargo test`. It should perform all tests and display `test result: ok` with `0 failed`
 - compile with `cargo build --release`
 
 ### Usage
 
-To run the solutions to days `X`, `Y` and `Z`, run `cargo run --release -- X Y Z`
+- Download your puzzles inputs and put them into the `data/inputs` folder. Name them `input01.txt`, `input02.txt`, etc
+- To run all solutions, run `cargo run --release`
+- To run the solutions to days `X`, `Y` and `Z`, run `cargo run --release -- X Y Z`
 
 ## Why
 

@@ -212,9 +212,9 @@ enum Outcome {
 
 #[cfg(test)]
 mod tests {
-    use crate::day02::{pt1, pt2};
+    use crate::solutions::day02::{pt1, pt2};
 
-    const FILENAME: &str = "./data/example02.txt";
+    const FILENAME: &str = "./data/examples/example02.txt";
 
     #[test]
     fn test_day02_pt01() {
