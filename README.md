@@ -2,6 +2,21 @@
 
 My attempt to solve the [AoC2022](https://adventofcode.com/2022/) with the [Rust programming language](https://www.rust-lang.org/).
 
+## Usage
+
+### Dependencies
+
+- [rustup](https://rustup.rs/)
+
+### Installation
+
+- clone this repository
+- `cd` to it
+- compile with `cargo build --release`
+
+### Usage
+
+To run the solutions to days `X`, `Y` and `Z`, run `cargo run --release X Y Z`
 
 ## Why
 
