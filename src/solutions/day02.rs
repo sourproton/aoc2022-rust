@@ -4,9 +4,7 @@
 //!
 //! https://adventofcode.com/2022/day/2
 
-use std::time::SystemTime;
-
-use crate::read_lines;
+use {crate::helpers::read_lines, std::time::SystemTime};
 
 pub fn pt1(filename: &str) -> (u32, u32) {
     let time = SystemTime::now();

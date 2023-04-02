@@ -4,11 +4,8 @@
 //!
 //! https://adventofcode.com/2022/day/1
 
-use std::time::SystemTime;
+use {crate::helpers::read_lines, std::time::SystemTime};
 
-use crate::read_lines;
-
-// finds the block with the largest sum in the file
 pub fn pt1(filename: &str) -> (u32, u32) {
     let time = SystemTime::now();
 
