@@ -6,6 +6,7 @@ use {
 };
 
 mod day01;
+mod day02;
 
 fn main() {
     args().skip(1).for_each(|arg| {
@@ -23,6 +24,14 @@ fn solve_day(day: u8) {
         1 => {
             let (answer1, time1) = day01::pt1(&filename);
             let (answer2, time2) = day01::pt2(&filename);
+
+            println!("Day {day:02}");
+            println!("    part 1: {answer1}, elapsed time: {time1} ms");
+            println!("    part 2: {answer2}, elapsed time: {time2} ms");
+        }
+        2 => {
+            let (answer1, time1) = day02::pt1(&filename);
+            let (answer2, time2) = day02::pt2(&filename);
 
             println!("Day {day:02}");
             println!("    part 1: {answer1}, elapsed time: {time1} ms");
