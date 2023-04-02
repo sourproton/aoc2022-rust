@@ -16,7 +16,7 @@ My attempt to solve the [AoC2022](https://adventofcode.com/2022/) with the [Rust
 
 ### Usage
 
-To run the solutions to days `X`, `Y` and `Z`, run `cargo run --release X Y Z`
+To run the solutions to days `X`, `Y` and `Z`, run `cargo run --release -- X Y Z`
 
 ## Why
 
