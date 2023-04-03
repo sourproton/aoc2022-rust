@@ -1,7 +1,6 @@
 //! Helpers for AoC. Includes macros, reading functions, etc
 
 use {
-    crate::solutions,
     std::fs::File,
     std::io::{self, BufRead},
     std::path::Path,
@@ -14,12 +13,13 @@ pub fn solve_day(day: u8) {
     /// macro takes a `dayXX` module and displays its `dayXX::pt1` and `dayXX::pt2` solutions
     macro_rules! solve {
         ($dayXX:ident) => {{
-            let (answer1, time1) = solutions::$dayXX::pt1(&filename);
-            let (answer2, time2) = solutions::$dayXX::pt2(&filename);
+            let (answer1, time1) = crate::solutions::$dayXX::pt1(&filename);
+            let (answer2, time2) = crate::solutions::$dayXX::pt2(&filename);
 
             println!("Day {day:02}");
             println!("    part 1: {answer1}, elapsed time: {time1} ms");
             println!("    part 2: {answer2}, elapsed time: {time2} ms");
+            println!("");
         }};
     }
 
@@ -50,7 +50,7 @@ pub fn solve_day(day: u8) {
         // 23 => solve!(day23),
         // 24 => solve!(day24),
         // 25 => solve!(day25),
-        _ => println!("Day {day:02}\n    not implemented!"),
+        _ => println!("Day {day:02}\n    not implemented!\n"),
     }
 }
 

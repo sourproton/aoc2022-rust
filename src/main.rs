@@ -3,15 +3,13 @@ use std::env;
 mod helpers;
 mod solutions;
 
-const SOLVED: [u8; 2] = [1, 2];
-
 fn main() {
     // reading command line arguments
     let args: Vec<String> = env::args().collect();
 
     if args.len() == 1 {
         // if no arguments given, run all available solutions
-        SOLVED.into_iter().for_each(|day| {
+        (1..=25).for_each(|day| {
             helpers::solve_day(day);
         })
     } else {
