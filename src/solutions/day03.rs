@@ -10,10 +10,8 @@ pub fn pt1(filename: &str) -> (u32, u32) {
     let time = SystemTime::now();
 
     let answer = read_lines(filename)
-        .map(|line| match line {
-            Ok(line) => Rucksack::from_line(line).value_of_common(),
-            _ => panic!("unable to read line"),
-        })
+        .flatten()
+        .map(|line| Rucksack::from_line(line).value_of_common())
         .sum();
 
     let time = time.elapsed().unwrap().as_millis() as u32;

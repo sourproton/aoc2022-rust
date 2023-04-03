@@ -9,14 +9,9 @@ use {crate::helpers::read_lines, std::time::SystemTime};
 pub fn pt1(filename: &str) -> (u32, u32) {
     let time = SystemTime::now();
 
-    // iterating through each line
     let answer = read_lines(filename)
-        // getting a `RoundMoves` out of each line and calculating its `total_points`
-        .map(|line| match line {
-            Ok(line) => RoundMoves::from_line(line).total_points(),
-            _ => panic!("unable to read line"),
-        })
-        // getting the sum of all `total_points`
+        .flatten()
+        .map(|line| RoundMoves::from_line(line).total_points())
         .sum();
 
     let time = time.elapsed().unwrap().as_millis() as u32;
@@ -27,14 +22,9 @@ pub fn pt1(filename: &str) -> (u32, u32) {
 pub fn pt2(filename: &str) -> (u32, u32) {
     let time = SystemTime::now();
 
-    // iterating through each line
     let answer = read_lines(filename)
-        // getting a `RoundMoves` out of each line and calculating its `total_points`
-        .map(|line| match line {
-            Ok(line) => RoundOutcome::from_line(line).total_points(),
-            _ => panic!("unable to read line"),
-        })
-        // getting the sum of all `total_points`
+        .flatten()
+        .map(|line| RoundOutcome::from_line(line).total_points())
         .sum();
 
     let time = time.elapsed().unwrap().as_millis() as u32;

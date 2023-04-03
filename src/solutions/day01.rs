@@ -12,18 +12,15 @@ pub fn pt1(filename: &str) -> (u32, u32) {
     let mut biggest = 0;
     let mut current = 0;
 
-    // iterating through each line of the file
-    read_lines(filename).for_each(|line| {
-        if let Ok(line) = line {
-            match line.as_str() {
-                // if empty line, compare current block with biggest found until then
-                "" => {
-                    biggest = biggest.max(current);
-                    current = 0;
-                }
-                // if number, continue the sum of current block
-                _ => current += line.parse::<u32>().expect("unable to parse line {line}"),
+    read_lines(filename).flatten().for_each(|line| {
+        match line.as_str() {
+            // if empty line, compare current block with biggest found until then
+            "" => {
+                biggest = biggest.max(current);
+                current = 0;
             }
+            // if number, continue the sum of current block
+            _ => current += line.parse::<u32>().expect("unable to parse line {line}"),
         }
     });
 
@@ -43,26 +40,24 @@ pub fn pt2(filename: &str) -> (u32, u32) {
     let mut current = 0;
 
     // iterating through each line of the file
-    read_lines(filename).for_each(|line| {
-        if let Ok(line) = line {
-            match line.as_str() {
-                // if empty line, compare current block with 3 biggest known
-                "" => {
-                    if current > biggest[0] {
-                        biggest[2] = biggest[1];
-                        biggest[1] = biggest[0];
-                        biggest[0] = current;
-                    } else if current > biggest[1] {
-                        biggest[2] = biggest[1];
-                        biggest[1] = current;
-                    } else if current > biggest[2] {
-                        biggest[2] = current;
-                    }
-                    current = 0;
+    read_lines(filename).flatten().for_each(|line| {
+        match line.as_str() {
+            // if empty line, compare current block with 3 biggest known
+            "" => {
+                if current > biggest[0] {
+                    biggest[2] = biggest[1];
+                    biggest[1] = biggest[0];
+                    biggest[0] = current;
+                } else if current > biggest[1] {
+                    biggest[2] = biggest[1];
+                    biggest[1] = current;
+                } else if current > biggest[2] {
+                    biggest[2] = current;
                 }
-                // if number, continue the sum of current block
-                _ => current += line.parse::<u32>().expect("unable to parse line {line}"),
+                current = 0;
             }
+            // if number, continue the sum of current block
+            _ => current += line.parse::<u32>().expect("unable to parse line {line}"),
         }
     });
 
