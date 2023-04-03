@@ -50,7 +50,7 @@ pub fn solve_day(day: u8) {
         // 23 => solve!(day23),
         // 24 => solve!(day24),
         // 25 => solve!(day25),
-        _ => println!("Day {day:02}\n    not implemented!\n"),
+        _ => (),
     }
 }
 

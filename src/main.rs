@@ -1,9 +1,11 @@
-use std::env;
+use std::{env, time::SystemTime};
 
 mod helpers;
 mod solutions;
 
 fn main() {
+    let time = SystemTime::now();
+
     // reading command line arguments
     let args: Vec<String> = env::args().collect();
 
@@ -21,4 +23,9 @@ fn main() {
             helpers::solve_day(day);
         })
     }
+
+    println!(
+        "total elapsed time: {} ms",
+        time.elapsed().unwrap().as_millis()
+    );
 }
