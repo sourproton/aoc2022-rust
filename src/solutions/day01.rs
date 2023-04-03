@@ -90,13 +90,13 @@ mod tests {
     const FILENAME: &str = "./data/examples/example01.txt";
 
     #[test]
-    fn test_day01_pt01() {
+    fn pt01() {
         let (answer, _) = pt1(FILENAME);
         assert_eq!(24000, answer);
     }
 
     #[test]
-    fn test_day01_pt02() {
+    fn pt02() {
         let (answer, _) = pt2(FILENAME);
         assert_eq!(45000, answer);
     }
