@@ -14,12 +14,18 @@ pub fn solve_day(day: u8) {
     /// macro takes a `dayXX` module and displays its `dayXX::pt1` and `dayXX::pt2` solutions
     macro_rules! solve {
         ($dayXX:ident) => {{
-            let (answer1, time1) = crate::solutions::$dayXX::pt1(&filename);
-            let (answer2, time2) = crate::solutions::$dayXX::pt2(&filename);
+            let answer1 = crate::solutions::$dayXX::pt1(&filename);
+            let answer2 = crate::solutions::$dayXX::pt2(&filename);
 
             println!("Day {day:02}");
-            println!("    part 1: {answer1}, elapsed time: {time1} ms");
-            println!("    part 2: {answer2}, elapsed time: {time2} ms");
+            println!(
+                "    part 1: {}, elapsed time: {} ms",
+                answer1.answer, answer1.time
+            );
+            println!(
+                "    part 2: {}, elapsed time: {} ms",
+                answer2.answer, answer2.time
+            );
             println!("");
         }};
     }
@@ -55,6 +61,18 @@ pub fn solve_day(day: u8) {
     }
 }
 
+/// struct to store the answer of a challenge
+pub struct Answer {
+    answer: u32,
+    time: u32,
+}
+
+impl Answer {
+    pub fn new(answer: u32, time: u32) -> Self {
+        Answer { answer, time }
+    }
+}
+
 /// returns an iterator over each line in the input file, ignoring lines that failed to be read
 pub fn read_lines<P>(filename: P) -> Flatten<Lines<BufReader<File>>>
 where
@@ -63,4 +81,15 @@ where
     BufReader::new(File::open(filename).expect("not able to open file"))
         .lines()
         .flatten()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::Answer;
+
+    impl Answer {
+        pub fn answer(&self) -> u32 {
+            self.answer
+        }
+    }
 }

@@ -4,10 +4,13 @@
 //!
 //! https://adventofcode.com/2022/day/1
 
-use {crate::helpers::read_lines, std::time::SystemTime};
+use {
+    crate::helpers::{read_lines, Answer},
+    std::time::SystemTime,
+};
 
 /// solves the part 1 of day 01 and return its result and elapsed time
-pub fn pt1(filename: &str) -> (u32, u32) {
+pub fn pt1(filename: &str) -> Answer {
     let time = SystemTime::now();
 
     let mut biggest = 0;
@@ -27,14 +30,11 @@ pub fn pt1(filename: &str) -> (u32, u32) {
 
     biggest = biggest.max(current);
 
-    let answer = biggest;
-    let time = time.elapsed().unwrap().as_millis() as u32;
-
-    (answer, time)
+    Answer::new(biggest, time.elapsed().unwrap().as_millis() as u32)
 }
 
 /// solves the part 2 of day 01 and return its result and elapsed time
-pub fn pt2(filename: &str) -> (u32, u32) {
+pub fn pt2(filename: &str) -> Answer {
     let time = SystemTime::now();
 
     // we want to find the sum of the 3 biggest blocks
@@ -74,10 +74,10 @@ pub fn pt2(filename: &str) -> (u32, u32) {
         biggest[2] = current;
     }
 
-    let answer = biggest.iter().sum();
-    let time = time.elapsed().unwrap().as_millis() as u32;
-
-    (answer, time)
+    Answer::new(
+        biggest.iter().sum(),
+        time.elapsed().unwrap().as_millis() as u32,
+    )
 }
 
 #[cfg(test)]
@@ -88,13 +88,13 @@ mod tests {
 
     #[test]
     fn pt01() {
-        let (answer, _) = pt1(FILENAME);
-        assert_eq!(24000, answer);
+        let answer = pt1(FILENAME);
+        assert_eq!(24000, answer.answer());
     }
 
     #[test]
     fn pt02() {
-        let (answer, _) = pt2(FILENAME);
-        assert_eq!(45000, answer);
+        let answer = pt2(FILENAME);
+        assert_eq!(45000, answer.answer());
     }
 }
