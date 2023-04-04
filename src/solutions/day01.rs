@@ -6,13 +6,14 @@
 
 use {crate::helpers::read_lines, std::time::SystemTime};
 
+/// solves the part 1 of day 01 and return its result and elapsed time
 pub fn pt1(filename: &str) -> (u32, u32) {
     let time = SystemTime::now();
 
     let mut biggest = 0;
     let mut current = 0;
 
-    read_lines(filename).flatten().for_each(|line| {
+    read_lines(filename).for_each(|line| {
         match line.as_str() {
             // if empty line, compare current block with biggest found until then
             "" => {
@@ -32,6 +33,7 @@ pub fn pt1(filename: &str) -> (u32, u32) {
     (answer, time)
 }
 
+/// solves the part 2 of day 01 and return its result and elapsed time
 pub fn pt2(filename: &str) -> (u32, u32) {
     let time = SystemTime::now();
 
@@ -40,7 +42,7 @@ pub fn pt2(filename: &str) -> (u32, u32) {
     let mut current = 0;
 
     // iterating through each line of the file
-    read_lines(filename).flatten().for_each(|line| {
+    read_lines(filename).for_each(|line| {
         match line.as_str() {
             // if empty line, compare current block with 3 biggest known
             "" => {

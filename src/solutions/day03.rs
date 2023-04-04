@@ -6,11 +6,11 @@
 
 use {crate::helpers::read_lines, std::time::SystemTime};
 
+/// solves the part 1 of day 03 and return its result and elapsed time
 pub fn pt1(filename: &str) -> (u32, u32) {
     let time = SystemTime::now();
 
     let answer = read_lines(filename)
-        .flatten()
         .map(|line| Rucksack::from_line(line).value_of_common())
         .sum();
 
@@ -19,6 +19,7 @@ pub fn pt1(filename: &str) -> (u32, u32) {
     (answer, time)
 }
 
+/// solves the part 2 of day 03 and return its result and elapsed time
 pub fn pt2(filename: &str) -> (u32, u32) {
     let time = SystemTime::now();
 
@@ -32,7 +33,7 @@ pub fn pt2(filename: &str) -> (u32, u32) {
 
     let mut answer = 0;
 
-    for line in read_lines(filename).flatten() {
+    for line in read_lines(filename) {
         match current_index {
             1 => {
                 current_group.first = line;

@@ -6,11 +6,11 @@
 
 use {crate::helpers::read_lines, std::time::SystemTime};
 
+/// solves the part 1 of day 02 and return its result and elapsed time
 pub fn pt1(filename: &str) -> (u32, u32) {
     let time = SystemTime::now();
 
     let answer = read_lines(filename)
-        .flatten()
         .map(|line| RoundMoves::from_line(line).total_points())
         .sum();
 
@@ -19,11 +19,11 @@ pub fn pt1(filename: &str) -> (u32, u32) {
     (answer, time)
 }
 
+/// solves the part 2 of day 02 and return its result and elapsed time
 pub fn pt2(filename: &str) -> (u32, u32) {
     let time = SystemTime::now();
 
     let answer = read_lines(filename)
-        .flatten()
         .map(|line| RoundOutcome::from_line(line).total_points())
         .sum();
 

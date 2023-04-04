@@ -2,7 +2,8 @@
 
 use {
     std::fs::File,
-    std::io::{self, BufRead},
+    std::io::{BufRead, BufReader, Lines},
+    std::iter::Flatten,
     std::path::Path,
 };
 
@@ -54,10 +55,12 @@ pub fn solve_day(day: u8) {
     }
 }
 
-/// returns an iterator over each line in the input file
-pub fn read_lines<P>(filename: P) -> std::io::Lines<std::io::BufReader<std::fs::File>>
+/// returns an iterator over each line in the input file, ignoring lines that failed to be read
+pub fn read_lines<P>(filename: P) -> Flatten<Lines<BufReader<File>>>
 where
     P: AsRef<Path>,
 {
-    io::BufReader::new(File::open(filename).expect("not able to open file")).lines()
+    BufReader::new(File::open(filename).expect("not able to open file"))
+        .lines()
+        .flatten()
 }
