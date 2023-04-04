@@ -128,7 +128,7 @@ fn char_to_priority(c: char) -> u32 {
 
 #[cfg(test)]
 mod tests {
-    use crate::solutions::day03::{pt1, pt2};
+    use super::{pt1, pt2};
 
     use super::Rucksack;
 

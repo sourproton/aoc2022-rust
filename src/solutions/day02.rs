@@ -199,7 +199,7 @@ enum Outcome {
 
 #[cfg(test)]
 mod tests {
-    use crate::solutions::day02::{pt1, pt2};
+    use super::{pt1, pt2};
 
     const FILENAME: &str = "./data/examples/example02.txt";
 
