@@ -4,15 +4,19 @@
 //!
 //! https://adventofcode.com/2022/day/1
 
-use {crate::helpers::read_lines, std::time::SystemTime};
+use {
+    crate::helpers::{read_lines, Answer},
+    std::time::SystemTime,
+};
 
-pub fn pt1(filename: &str) -> (u32, u32) {
+/// solves the part 1 of day 01 and return its result and elapsed time
+pub fn pt1(filename: &str) -> Answer {
     let time = SystemTime::now();
 
     let mut biggest = 0;
     let mut current = 0;
 
-    read_lines(filename).flatten().for_each(|line| {
+    read_lines(filename).for_each(|line| {
         match line.as_str() {
             // if empty line, compare current block with biggest found until then
             "" => {
@@ -26,13 +30,11 @@ pub fn pt1(filename: &str) -> (u32, u32) {
 
     biggest = biggest.max(current);
 
-    let answer = biggest;
-    let time = time.elapsed().unwrap().as_millis() as u32;
-
-    (answer, time)
+    Answer::new(biggest, time.elapsed().unwrap().as_millis() as u32)
 }
 
-pub fn pt2(filename: &str) -> (u32, u32) {
+/// solves the part 2 of day 01 and return its result and elapsed time
+pub fn pt2(filename: &str) -> Answer {
     let time = SystemTime::now();
 
     // we want to find the sum of the 3 biggest blocks
@@ -40,7 +42,7 @@ pub fn pt2(filename: &str) -> (u32, u32) {
     let mut current = 0;
 
     // iterating through each line of the file
-    read_lines(filename).flatten().for_each(|line| {
+    read_lines(filename).for_each(|line| {
         match line.as_str() {
             // if empty line, compare current block with 3 biggest known
             "" => {
@@ -72,10 +74,10 @@ pub fn pt2(filename: &str) -> (u32, u32) {
         biggest[2] = current;
     }
 
-    let answer = biggest.iter().sum();
-    let time = time.elapsed().unwrap().as_millis() as u32;
-
-    (answer, time)
+    Answer::new(
+        biggest.iter().sum(),
+        time.elapsed().unwrap().as_millis() as u32,
+    )
 }
 
 #[cfg(test)]
@@ -86,13 +88,13 @@ mod tests {
 
     #[test]
     fn pt01() {
-        let (answer, _) = pt1(FILENAME);
-        assert_eq!(24000, answer);
+        let answer = pt1(FILENAME);
+        assert_eq!(24000, answer.answer());
     }
 
     #[test]
     fn pt02() {
-        let (answer, _) = pt2(FILENAME);
-        assert_eq!(45000, answer);
+        let answer = pt2(FILENAME);
+        assert_eq!(45000, answer.answer());
     }
 }

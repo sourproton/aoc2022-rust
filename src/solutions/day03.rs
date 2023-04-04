@@ -4,22 +4,24 @@
 //!
 //! https://adventofcode.com/2022/day/3
 
-use {crate::helpers::read_lines, std::time::SystemTime};
+use {
+    crate::helpers::{read_lines, Answer},
+    std::time::SystemTime,
+};
 
-pub fn pt1(filename: &str) -> (u32, u32) {
+/// solves the part 1 of day 03 and return its result and elapsed time
+pub fn pt1(filename: &str) -> Answer {
     let time = SystemTime::now();
 
     let answer = read_lines(filename)
-        .flatten()
         .map(|line| Rucksack::from_line(line).value_of_common())
         .sum();
 
-    let time = time.elapsed().unwrap().as_millis() as u32;
-
-    (answer, time)
+    Answer::new(answer, time.elapsed().unwrap().as_millis() as u32)
 }
 
-pub fn pt2(filename: &str) -> (u32, u32) {
+/// solves the part 2 of day 03 and return its result and elapsed time
+pub fn pt2(filename: &str) -> Answer {
     let time = SystemTime::now();
 
     let mut current_group = Group {
@@ -32,7 +34,7 @@ pub fn pt2(filename: &str) -> (u32, u32) {
 
     let mut answer = 0;
 
-    for line in read_lines(filename).flatten() {
+    for line in read_lines(filename) {
         match current_index {
             1 => {
                 current_group.first = line;
@@ -52,9 +54,7 @@ pub fn pt2(filename: &str) -> (u32, u32) {
         }
     }
 
-    let time = time.elapsed().unwrap().as_millis() as u32;
-
-    (answer, time)
+    Answer::new(answer, time.elapsed().unwrap().as_millis() as u32)
 }
 
 /// represents a Rucksack and the content on its 1st and 2nd compartments
@@ -136,14 +136,14 @@ mod tests {
 
     #[test]
     fn pt01() {
-        let (answer, _) = pt1(FILENAME);
-        assert_eq!(157, answer);
+        let answer = pt1(FILENAME);
+        assert_eq!(157, answer.answer());
     }
 
     #[test]
     fn pt02() {
-        let (answer, _) = pt2(FILENAME);
-        assert_eq!(70, answer);
+        let answer = pt2(FILENAME);
+        assert_eq!(70, answer.answer());
     }
 
     #[test]
