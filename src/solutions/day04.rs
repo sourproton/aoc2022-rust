@@ -64,8 +64,13 @@ impl SectionPair {
 
     // determines if one section contains the other
     fn contains(&self) -> bool {
-        self.first.start <= self.second.end && self.first.end >= self.second.start
-            || self.second.start <= self.first.end && self.second.end >= self.first.start
+        // checks for both possibilities of no overlap and takes the negative
+        !(
+            // checking that first isn't completely before second
+            self.first.end < self.second.start
+                // checking that first isn't completely after second
+                || self.first.start > self.second.end
+        )
     }
 
     // constructor
