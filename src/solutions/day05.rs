@@ -60,7 +60,7 @@ pub fn pt2(filename: &str) -> Answer {
 }
 
 struct Crates {
-    n_columns: usize,
+    // n_columns: usize,
     columns: Vec<Vec<char>>,
 }
 
@@ -85,7 +85,7 @@ impl Instruction {
 impl Crates {
     fn new_empty(n_columns: usize) -> Self {
         Crates {
-            n_columns,
+            // n_columns,
             columns: vec![Vec::new(); n_columns],
         }
     }
