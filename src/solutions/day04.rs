@@ -18,7 +18,10 @@ pub fn pt1(filename: &str) -> Answer {
         .filter(|p| *p)
         .count();
 
-    Answer::new(answer as u32, time.elapsed().unwrap().as_millis() as u32)
+    Answer::new(
+        answer.to_string(),
+        time.elapsed().unwrap().as_millis() as u32,
+    )
 }
 
 /// solves the part 2 of day 04 and return its result and elapsed time
@@ -30,7 +33,10 @@ pub fn pt2(filename: &str) -> Answer {
         .filter(|p| *p)
         .count();
 
-    Answer::new(answer as u32, time.elapsed().unwrap().as_millis() as u32)
+    Answer::new(
+        answer.to_string(),
+        time.elapsed().unwrap().as_millis() as u32,
+    )
 }
 
 // parses a line into a SectionPair
@@ -101,13 +107,13 @@ mod tests {
     #[test]
     fn test_pt1() {
         let answer = pt1(FILENAME);
-        assert_eq!(2, answer.answer());
+        assert_eq!(2.to_string(), answer.value());
     }
 
     #[test]
     fn test_pt2() {
         let answer = pt2(FILENAME);
-        assert_eq!(4, answer.answer());
+        assert_eq!(4.to_string(), answer.value());
     }
 
     #[test]

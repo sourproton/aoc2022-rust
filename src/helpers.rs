@@ -20,11 +20,11 @@ pub fn solve_day(day: u8) {
             println!("Day {day:02}");
             println!(
                 "    part 1: {}, elapsed time: {} ms",
-                answer1.answer, answer1.time
+                answer1.value, answer1.time
             );
             println!(
                 "    part 2: {}, elapsed time: {} ms",
-                answer2.answer, answer2.time
+                answer2.value, answer2.time
             );
             println!("");
         }};
@@ -36,7 +36,7 @@ pub fn solve_day(day: u8) {
         2 => solve!(day02),
         3 => solve!(day03),
         4 => solve!(day04),
-        // 5 => solve!(day05),
+        5 => solve!(day05),
         // 6 => solve!(day06),
         // 7 => solve!(day07),
         // 8 => solve!(day08),
@@ -63,13 +63,13 @@ pub fn solve_day(day: u8) {
 
 /// struct to store the answer of a challenge
 pub struct Answer {
-    answer: u32,
+    value: String,
     time: u32,
 }
 
 impl Answer {
-    pub fn new(answer: u32, time: u32) -> Self {
-        Answer { answer, time }
+    pub fn new(value: String, time: u32) -> Self {
+        Answer { value, time }
     }
 }
 
@@ -88,8 +88,8 @@ mod tests {
     use super::Answer;
 
     impl Answer {
-        pub fn answer(&self) -> u32 {
-            self.answer
+        pub fn value(&self) -> String {
+            self.value.to_owned()
         }
     }
 }

@@ -15,9 +15,12 @@ pub fn pt1(filename: &str) -> Answer {
 
     let answer = read_lines(filename)
         .map(|line| Rucksack::from_line(line).value_of_common())
-        .sum();
+        .sum::<u32>();
 
-    Answer::new(answer, time.elapsed().unwrap().as_millis() as u32)
+    Answer::new(
+        answer.to_string(),
+        time.elapsed().unwrap().as_millis() as u32,
+    )
 }
 
 /// solves the part 2 of day 03 and return its result and elapsed time
@@ -54,7 +57,10 @@ pub fn pt2(filename: &str) -> Answer {
         }
     }
 
-    Answer::new(answer, time.elapsed().unwrap().as_millis() as u32)
+    Answer::new(
+        answer.to_string(),
+        time.elapsed().unwrap().as_millis() as u32,
+    )
 }
 
 /// represents a Rucksack and the content on its 1st and 2nd compartments
@@ -137,13 +143,13 @@ mod tests {
     #[test]
     fn pt01() {
         let answer = pt1(FILENAME);
-        assert_eq!(157, answer.answer());
+        assert_eq!(157.to_string(), answer.value());
     }
 
     #[test]
     fn pt02() {
         let answer = pt2(FILENAME);
-        assert_eq!(70, answer.answer());
+        assert_eq!(70.to_string(), answer.value());
     }
 
     #[test]

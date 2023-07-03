@@ -30,7 +30,10 @@ pub fn pt1(filename: &str) -> Answer {
 
     biggest = biggest.max(current);
 
-    Answer::new(biggest, time.elapsed().unwrap().as_millis() as u32)
+    Answer::new(
+        biggest.to_string(),
+        time.elapsed().unwrap().as_millis() as u32,
+    )
 }
 
 /// solves the part 2 of day 01 and return its result and elapsed time
@@ -75,7 +78,7 @@ pub fn pt2(filename: &str) -> Answer {
     }
 
     Answer::new(
-        biggest.iter().sum(),
+        biggest.iter().sum::<u32>().to_string(),
         time.elapsed().unwrap().as_millis() as u32,
     )
 }
@@ -89,12 +92,12 @@ mod tests {
     #[test]
     fn pt01() {
         let answer = pt1(FILENAME);
-        assert_eq!(24000, answer.answer());
+        assert_eq!(24000.to_string(), answer.value());
     }
 
     #[test]
     fn pt02() {
         let answer = pt2(FILENAME);
-        assert_eq!(45000, answer.answer());
+        assert_eq!(45000.to_string(), answer.value());
     }
 }

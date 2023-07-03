@@ -15,9 +15,12 @@ pub fn pt1(filename: &str) -> Answer {
 
     let answer = read_lines(filename)
         .map(|line| RoundMoves::from_line(line).total_points())
-        .sum();
+        .sum::<u32>();
 
-    Answer::new(answer, time.elapsed().unwrap().as_millis() as u32)
+    Answer::new(
+        answer.to_string(),
+        time.elapsed().unwrap().as_millis() as u32,
+    )
 }
 
 /// solves the part 2 of day 02 and return its result and elapsed time
@@ -26,9 +29,12 @@ pub fn pt2(filename: &str) -> Answer {
 
     let answer = read_lines(filename)
         .map(|line| RoundOutcome::from_line(line).total_points())
-        .sum();
+        .sum::<u32>();
 
-    Answer::new(answer, time.elapsed().unwrap().as_millis() as u32)
+    Answer::new(
+        answer.to_string(),
+        time.elapsed().unwrap().as_millis() as u32,
+    )
 }
 
 #[derive(Debug)]
@@ -206,12 +212,12 @@ mod tests {
     #[test]
     fn pt01() {
         let answer = pt1(FILENAME);
-        assert_eq!(15, answer.answer());
+        assert_eq!(15.to_string(), answer.value());
     }
 
     #[test]
     fn pt02() {
         let answer = pt2(FILENAME);
-        assert_eq!(12, answer.answer());
+        assert_eq!(12.to_string(), answer.value());
     }
 }
