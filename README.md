@@ -33,7 +33,7 @@ Rust is a modern, general-purpose programming language that features *memory saf
 - [X] 2
 - [X] 3
 - [X] 4
-- [ ] 5
+- [X] 5
 - [ ] 6
 - [ ] 7
 - [ ] 8
