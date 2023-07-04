@@ -37,7 +37,7 @@ pub fn solve_day(day: u8) {
         3 => solve!(day03),
         4 => solve!(day04),
         5 => solve!(day05),
-        // 6 => solve!(day06),
+        6 => solve!(day06),
         // 7 => solve!(day07),
         // 8 => solve!(day08),
         // 9 => solve!(day09),
